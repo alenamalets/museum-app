@@ -1,9 +1,27 @@
+function doesNotPassAllValidations(name, msg) {
+    if (!name || !msg) {
+        alert('You forgot to fill in your name or message!')
+        return true;
+    }
+    if (msg.length > 280) {
+        alert('You message is too long!')
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function submitComment() {
+
     // gather info
     const inputField = document.getElementById('name');
     const name = inputField.value;
     const textArea = document.getElementById('msg');
     const msg = textArea.value;
+    
+    if (doesNotPassAllValidations(name, msg)) {
+        return null;
+    }
 
     //create elements
     const comment = document.createElement('section');
@@ -19,7 +37,8 @@ function submitComment() {
 
     const commentSection = document.getElementById('comments');
     commentSection.appendChild(comment);
-    
+
     inputField.value = null;
-    textArea.value =null;
+    textArea.value = null;
+
 }
